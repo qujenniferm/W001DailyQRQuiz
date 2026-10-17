@@ -4,17 +4,18 @@ All quiz content lives in `js/quiz-data.js`. The site is intentionally static: n
 
 ## Quiz object
 
-Each quiz needs a unique `id`, week, day, meeting number, phase, title, review-focus line, and a `questions` array. Keep each daily quiz at 10 questions.
+Each quiz needs a unique `id`, a `unit` (1-6), week, day, meeting number, phase, title, review-focus line, and a `questions` array. Keep each daily quiz at 10 questions.
 
 ```js
 {
-  id: "c2-w4-sun",
+  id: "u2-w4-sun",
+  unit: 2,
   week: 4,
   day: "Sunday",
   meeting: 11,
-  phase: "UNDERSTAND",
+  phase: "UNDERSTAND",   // UNDERSTAND, TRY, DEVELOP or WRITE & REFLECT
   title: "Place Description Warm-up",
-  reviews: "Cycle 2 + older Cycle 1 retrieval",
+  reviews: "Unit 2 + older Unit 1 retrieval",
   questions: [ /* exactly 10 */ ]
 }
 ```
@@ -66,3 +67,8 @@ A good 10-item entry quiz is usually:
 - 3–5 question formats, not ten near-identical MCQs
 
 Avoid trick questions. Keep the English at A1–A2; the cognitive work should be retrieval, noticing, categorizing, sequencing, and editing rather than decoding a difficult stem.
+
+
+## Slots and meeting numbers
+
+The hub shows one slot for each Sunday-Thursday meeting in Weeks 2-14 (see `course.plan`). A quiz fills its slot when its `week` and `day` match. Meeting number = (week - 2) × 5 + day number (Sunday = 1), so Week 4 Sunday is meeting 11.
