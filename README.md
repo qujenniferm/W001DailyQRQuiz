@@ -1,11 +1,11 @@
 # W001 Daily Review Quiz Hub
 
-A zero-build, static quiz hub designed for GitHub Pages. It contains **10 Cycle 1 daily entry quizzes × 10 questions** and is set up to expand across the full W001 course.
+A zero-build, static quiz hub designed for GitHub Pages. It contains **20 daily entry quizzes × 10 questions (Unit 1 and Unit 2)** and shows a slot for every meeting of the 13 teaching weeks (Weeks 2-14), so the full W001 course fits in one hub. Slots without a quiz show as “Coming soon”.
 
 ## What teachers do
 
 1. Open `index.html` on the published GitHub Pages site.
-2. Find today's quiz by week/day.
+2. Pick the unit and week, then find today's quiz by day.
 3. Click **New session QR**.
 4. Display the QR code on the classroom screen.
 5. Students scan it and complete the quiz as they arrive.
@@ -39,32 +39,34 @@ The QR code library is loaded from jsDelivr. If it ever fails to load, the stude
 
 ## Coursebook visual language
 
-The CSS uses the Cycle 1 palette taken from the W001 deck theme:
+The CSS uses the W001 deck palette taken from the W001 deck theme:
 
 - ink `#26313A`
 - warm paper `#F3F1EC`
 - UNDERSTAND teal `#4E7B76`
 - TRY gold `#B58A3C`
 - DEVELOP blue `#5B6F8C`
-- SHOW & REFLECT violet `#7A6A8F`
+- WRITE & REFLECT violet `#7A6A8F`
 
 ## Edit or add quizzes
 
 See `docs/QUESTION_AUTHORING.md`. All content is in `js/quiz-data.js`; there is no framework or build process.
 
-## Current Cycle 1 schedule
+## Course map
 
-- Week 2 Sunday — onboarding recycle
-- Week 2 Monday — facts, guesses, reasons
-- Week 2 Tuesday — paragraph architecture
-- Week 2 Wednesday — core description language
-- Week 2 Thursday — checking and sentence repair
-- Week 3 Sunday — cumulative spiral
-- Week 3 Monday — specificity and development
-- Week 3 Tuesday — third-person -s + Editor's Toolkit
-- Week 3 Wednesday — cumulative pre-writing retrieval
-- Week 3 Thursday — full Cycle 1 retrieval challenge
+| Unit | Weeks | Genre | Quizzes |
+| --- | --- | --- | --- |
+| Unit 1 | 2-3 | Describe a person | 10 written |
+| Unit 2 | 4-5 | Describe a place | 10 written |
+| Unit 3 | 6 | Describe a thing (product review) | to write |
+| Typing week | 7 | Typed piece, midterm | to write |
+| Unit 4 | 8-9 | Opinion 1: agree / disagree | to write |
+| Unit 5 | 10-11 | Opinion 2: best and most important | to write |
+| Unit 6 | 12-13 | Opinion 3: ways that X can Y | to write |
+| Typing week | 14 | Typed piece, review | to write |
 
-## Suggested next expansion
+The course map lives in `course.plan` in `js/quiz-data.js`. Meeting numbers run from Week 2 Sunday = 1.
 
-Use the same architecture for Cycles 2–6. Keep the older-information principle: every new quiz should include a few items from previous weeks/cycles, not only yesterday's material.
+## Adding quizzes for the next units
+
+Use the same architecture. Keep the older-information principle: every new quiz should include a few items from previous weeks and units, not only yesterday's material. Add the quiz to `quizzes` with `unit` set (see `docs/QUESTION_AUTHORING.md`); the hub shows it automatically in place of its “Coming soon” slot.
