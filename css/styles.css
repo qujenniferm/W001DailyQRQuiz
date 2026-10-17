@@ -32,3 +32,15 @@ footer{width:min(1120px,92vw);margin:0 auto 30px;color:var(--muted);font-size:12
 .quiz-card.soon{opacity:.55}
 .quiz-card.soon h2{font-size:1.05rem}
 #unitFilter{margin-right:8px}
+/* identify (click the word or sentence) */
+.identify .tokbox{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.identify.by-sentence .tokbox{flex-direction:column}
+.tok{appearance:none;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:9px 12px;font:inherit;font-size:17px;cursor:pointer;text-align:left}
+.tok:hover{border-color:var(--teal)}
+.tok.selected{border-color:var(--teal);background:#e6f0ee;box-shadow:0 0 0 2px rgba(78,123,118,.25)}
+.tok.correct{border-color:var(--good);background:#e5f2e9}
+.tok.incorrect{border-color:var(--bad);background:#f6e4e1}
+.tok.missed{border-color:var(--good);border-style:dashed;background:#f3f9f4}
+.tok:disabled{cursor:default;color:var(--ink);opacity:1}
+.locked{pointer-events:none}
+@media print{.topbar,.btn{display:none}.answer-row{break-inside:avoid}}

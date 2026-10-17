@@ -1,7 +1,8 @@
-(function(){
-  const data=window.W001_QUIZZES; const grid=document.getElementById('quizGrid');
+function W001Start(){
+  const data=window.W001_QUIZZES; const srcNote=document.getElementById('sourceNote'); if(srcNote&&window.W001_SOURCE==='spreadsheet'){srcNote.style.display='block';srcNote.innerHTML='<strong>Live data.</strong> These questions were loaded from the published spreadsheet.'+((window.W001_SKIPPED||[]).length?' <strong>'+window.W001_SKIPPED.length+' rows were skipped because they are incomplete:</strong> '+window.W001_SKIPPED.slice(0,6).join(', ')+((window.W001_SKIPPED.length>6)?' ...':'')+'.':'');} const grid=document.getElementById('quizGrid');
+  if(!data.quizzes.length&&srcNote){srcNote.style.display='block';srcNote.innerHTML='<strong>No questions loaded.</strong> The Hub could not read the spreadsheet. Check the link in js/config.js and that the sheet is published as CSV.';}
   const unitFilter=document.getElementById('unitFilter'); const weekFilter=document.getElementById('weekFilter'); const searchBox=document.getElementById('searchBox');
-  const phaseColors={"UNDERSTAND":"#4E7B76","TRY":"#B58A3C","DEVELOP":"#5B6F8C","WRITE & REFLECT":"#7A6A8F","SHOW & REFLECT":"#7A6A8F"};
+  const phaseColors=window.W001_PHASE_COLORS||{};
   const DAYS=["Sunday","Monday","Tuesday","Wednesday","Thursday"];
   const plan=(data.course&&data.course.plan)||[];
   const unitOfWeek={}; const nameOfWeek={};
@@ -36,7 +37,7 @@
         grid.appendChild(card); return;
       }
       card.style.setProperty('--phase',phaseColors[x.phase]||'#4E7B76');
-      card.innerHTML=`<div class="meta">Week ${x.week} · ${x.day} · Meeting ${x.meeting}</div><h2>${esc(x.title)}</h2><p>${esc(x.reviews)}</p><div class="meta">${esc(x.phase)} · ${x.questions.length} questions</div><div class="teacher-panel"><button class="btn teal makeqr">New session QR</button> <a class="btn secondary preview" href="quiz.html?id=${encodeURIComponent(x.id)}" target="_blank" rel="noopener">Preview quiz</a><div class="qrbox"><div class="qr-canvas"></div><div><strong>Student link</strong><div class="shareurl"></div><button class="btn small secondary copy">Copy link</button> <button class="btn small secondary refresh">Refresh code</button></div></div></div>`;
+      card.innerHTML=`<div class="meta">Week ${x.week} · ${x.day} · Meeting ${x.meeting}</div><h2>${esc(x.title)}</h2><p>${esc(x.reviews)}</p><div class="meta">${esc(x.phase)} · ${x.questions.length} questions</div><div class="teacher-panel"><button class="btn teal makeqr">New session QR</button> <a class="btn secondary preview" href="quiz.html?id=${encodeURIComponent(x.id)}" target="_blank" rel="noopener">Preview quiz</a> <a class="btn secondary key" href="key.html?id=${encodeURIComponent(x.id)}" target="_blank" rel="noopener">Answer key</a><div class="qrbox"><div class="qr-canvas"></div><div><strong>Student link</strong><div class="shareurl"></div><button class="btn small secondary copy">Copy link</button> <button class="btn small secondary refresh">Refresh code</button></div></div></div>`;
       const box=card.querySelector('.qrbox'), qr=card.querySelector('.qr-canvas'), urlEl=card.querySelector('.shareurl');
       function make(){const url=studentUrl(x.id,sessionCode());urlEl.textContent=url;drawQR(qr,url);box.classList.add('open')}
       card.querySelector('.makeqr').addEventListener('click',make);card.querySelector('.refresh').addEventListener('click',make);
@@ -45,4 +46,5 @@
     });
   }
   unitFilter.addEventListener('change',render);weekFilter.addEventListener('change',render);searchBox.addEventListener('input',render);render();
-})();
+}
+(window.W001Load||function(c){c()})(W001Start);
