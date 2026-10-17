@@ -1,6 +1,6 @@
 (function(){
   const all=window.W001_QUIZZES.quizzes; const params=new URLSearchParams(location.search); const quiz=all.find(q=>q.id===params.get('id')); const app=document.getElementById('app');
-  const phaseColors={"UNDERSTAND":"#4E7B76","TRY":"#B58A3C","DEVELOP":"#5B6F8C","SHOW & REFLECT":"#7A6A8F"};
+  const phaseColors={"UNDERSTAND":"#4E7B76","TRY":"#B58A3C","DEVELOP":"#5B6F8C","WRITE & REFLECT":"#7A6A8F","SHOW & REFLECT":"#7A6A8F"};
   if(!quiz){app.innerHTML='<div class="score-card"><h1>Quiz not found</h1><p>Ask your teacher for today\'s QR code.</p></div>';return;}
   document.documentElement.style.setProperty('--phase',phaseColors[quiz.phase]||'#4E7B76');
   let idx=0,answers=new Array(quiz.questions.length).fill(null),checked=new Array(quiz.questions.length).fill(false),results=new Array(quiz.questions.length).fill(false);
